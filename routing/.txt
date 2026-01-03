@@ -1,0 +1,51 @@
+raw nodejs e routing : 
+if (req.method === "GET" && req.url === "/") {
+  res.end("Home");
+} else if (req.method === "GET" && req.url === "/health") {
+  res.end("OK");
+}
+
+expreejs e routing simplified : 
+app.METHOD(PATH, HANDLER);
+
+app.get/**METHOD*/("/"/**PATH*/, (req, res) => {
+  res.send("Home");
+});
+
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
+
+app.post("/users", (req, res) => {
+  res.send("User created");
+});
+
+app.put("/users", (req, res) => {
+  res.send("User updated");
+});
+
+app.delete("/users", (req, res) => {
+  res.send("User deleted");
+});
+
+ * for testing :
+option 1 (in terminal): 
+curl -X POST http://localhost:3000/users
+curl -X PUT http://localhost:3000/users/1
+curl -X PUT http://localhost:3000/users/1
+curl -X DELETE http://localhost:3000/users/1
+option 2: 
+inspect -> console 
+fetch("/users", { method: "POST" })
+  .then(r => r.text())
+  .then(console.log);
+// POST ok 
+fetch("/users/1", { method: "PUT" })
+  .then(r => r.text())
+  .then(console.log);
+// PUT ok 
+fetch("/users/1", { method: "DELETE" })
+  .then(r => r.text())
+  .then(console.log);
+// DELETE ok 
+
